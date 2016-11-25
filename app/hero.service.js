@@ -26,6 +26,10 @@ var HeroService = (function () {
     HeroService.prototype.getHeroesRejected = function () {
         return Promise.reject("HeroService error: Service denied.");
     };
+    HeroService.prototype.getHero = function (id) {
+        return this.getHeroes()
+            .then(function (heroes) { return heroes.find(function (hero) { return hero.id === id; }); });
+    };
     HeroService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
