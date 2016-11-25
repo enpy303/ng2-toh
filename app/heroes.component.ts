@@ -8,7 +8,6 @@ import { Hero } from './hero';
     selector: 'my-heroes',
     providers: [HeroService],
     template: `
-    <h1>{{title}}</h1>
     <h2>My Heroes</h2>
     <ul class="heroes">
       <li *ngFor="let hero of heroes"
@@ -17,8 +16,13 @@ import { Hero } from './hero';
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
-  `
+    <div *ngIf="selectedHero">
+      <h2>
+        {{selectedHero.name | uppercase}} is my hero
+      </h2>
+      <button (click)="gotoDetail()">View Details</button>
+    </div>
+    `
 })
 export class HeroesComponent implements OnInit {
 
